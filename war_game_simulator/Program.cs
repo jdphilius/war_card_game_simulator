@@ -10,6 +10,8 @@ namespace war_game_simulator
     {
         static void Main(string[] args)
         {
+            var gowDeck = new Deck();
+            
             
         }
     }
@@ -28,6 +30,9 @@ namespace war_game_simulator
             {
                 cards.Push(new Card(cv.sv, cv.rv));
             }
+
+
+            cards.Shuffle();
           
 
         }
