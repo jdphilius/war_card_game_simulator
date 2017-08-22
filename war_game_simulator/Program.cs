@@ -23,7 +23,7 @@ namespace war_game_simulator
 
             cards = new Stack<Card>();
 
-
+            
             foreach (var cv in Enum.GetValues(typeof(suits)).Cast<suits>().Zip(Enumerable.Range(1, 13), (a, b) => new { sv = a, rv = b }))
             {
                 cards.Push(new Card(cv.sv, cv.rv));
@@ -52,17 +52,7 @@ namespace war_game_simulator
         }
 
 
-        public static void Shuffle<Card>(this Stack<Card> cards)
-        {
-            var cardValues = cards.ToArray();
-            cards.Clear();
-
-            var rnd = new Random(DateTime.Now.Millisecond);
-
-            foreach (var cv in cardValues.OrderBy(x => rnd.Next(cards.Count)))
-                cards.Push(cv);
-        }
-
+        
 
         public Stack<Card> cards { get; set; }
 
@@ -108,12 +98,42 @@ namespace war_game_simulator
     {
         public Player(Deck dk)
         {
+            for (int i = 0; i < 26; i++)
+            {
+                var temp = dk.GetTopCard();
+
+                playerCards.Push(temp);
+
+            }
+        }
+
+        public Card DrawACard()
+        {
+            playerCards.Shuffle();
+            return playerCards.Pop();
+        }
+
+       public Stack<Card> playerCards { get; set; }
+
+        private int points_accumulated;
+    
+    }
+
+
+    public static class WarGameExtensions
+    {
+        public static void Shuffle<Card>(this Stack<Card> cards)
+        {
+            var cardValues = cards.ToArray();
+            cards.Clear();
+
+            var rnd = new Random(DateTime.Now.Millisecond);
+
+            foreach (var cv in cardValues.OrderBy(x => rnd.Next(cards.Count)))
+                cards.Push(cv);
+
 
         }
 
-       public Card[] playerCards { get; set; }
-
-        private int points;
-    
     }
 }
