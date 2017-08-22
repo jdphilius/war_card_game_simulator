@@ -124,7 +124,11 @@ namespace war_game_simulator
         ///This constructor trhows an exception
         public Player(Deck dk)
         {
-            
+            if(PlayerCards == null)
+            {
+                PlayerCards = new Stack<Card>();
+            }
+
             //Do players grab the top 26 cards or are the 
             //cards dealt round robin? How do we know 
             //how many cards are in the Deck
