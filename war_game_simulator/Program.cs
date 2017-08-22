@@ -11,6 +11,15 @@ namespace war_game_simulator
         static void Main(string[] args)
         {
             var gowDeck = new Deck();
+
+            var p1 = new Player(gowDeck);
+            var p2 = new Player(gowDeck);
+
+            while(!gowDeck.IsEmpty())
+            {
+
+
+            }
             
             
         }
@@ -120,7 +129,7 @@ namespace war_game_simulator
 
        public Stack<Card> playerCards { get; set; }
 
-        private int points_accumulated;
+       private int points_accumulated;
     
     }
 
